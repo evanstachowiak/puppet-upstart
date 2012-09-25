@@ -5,7 +5,7 @@ start on runlevel [35]
 stop on runlevel [016]
 
 # daemon or not?
-<% if fork %>expect fork<% end %>
+expect <%= @expect %> 
 respawn
 
 <% if use_script then%>script<% else %>exec<% end %> <%= cmd %>
