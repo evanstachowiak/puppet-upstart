@@ -34,10 +34,10 @@
 #
 define upstart::job (
   $ensure      = 'present',
-  $cmd         = '',
-  $description = '',
+  $cmd         = $upstart::cmd,
+  $description = $upstart::description,
   $expect      = $upstart::expect,
-  $use_script  = false
+  $use_script  = $upstart::use_script
 ) {
 
   Class['upstart'] -> Upstart::Job[$name]
