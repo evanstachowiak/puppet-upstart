@@ -48,9 +48,15 @@ define upstart::job (
   $cmd            = ''
 ) {
 
+  #File["/etc/init/${title}.conf"] ~> Service[$name]
+
   file { "/etc/init/${title}.conf":
     ensure  => $ensure,
     content => template('upstart/job.conf.erb'),
   }
+
+  #service { $name:
+  #  provider => 'upstart',
+  #}
 
 }
