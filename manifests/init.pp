@@ -1,4 +1,4 @@
-class upstart inherits upstart::params {
+class upstart {
 
   package { 'upstart':
     ensure => installed,

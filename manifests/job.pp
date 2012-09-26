@@ -7,6 +7,12 @@
 #   [*present*]
 #     Ensure whether job init file is present or absent.
 #     Default value: 'present'
+#   [*start_runlevel*]
+#     Upstart job start runlevel
+#     Default value: [2345]
+#   [*stop_runlevel*]
+#     Upstart job runlevel
+#     Default value: [!2345]
 #   [*cmd*]
 #     Script command to execute on start/restart
 #     Default value: ''
@@ -33,15 +39,14 @@
 #   class { upstart: }
 #
 define upstart::job (
-  $ensure      = 'present',
-  $cmd         = $upstart::cmd,
-  $description = $upstart::description,
-  $expect      = $upstart::expect,
-  $use_script  = $upstart::use_script
+  $ensure         = 'present',
+  $description    = undef,
+  $start_runlevel = '[2345]',
+  $stop_runlevel  = '[!2345]',
+  $expect         = 'fork',
+  $use_script     = false,
+  $cmd            = ''
 ) {
-
-  Class['upstart'] -> Upstart::Job[$name]
-  include upstart
 
   file { "/etc/init/${title}.conf":
     ensure  => $ensure,
