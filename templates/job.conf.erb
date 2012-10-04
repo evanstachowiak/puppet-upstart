@@ -1,17 +1,90 @@
 # <%= @title %>
 <% if @description %>description "<%= description %>"<% end %>
+<% if @author -%>
+author "<%= @author %>"
+<% end -%>
+<% if @emits -%>
+
+emits <%= @emits %>
+<% end -%>
 
 start on runlevel <%= @start_runlevel %>
 stop on runlevel <%= @stop_runlevel %>
 
-# daemon or not?
+# no expect, fork, or daemon?
+<% if @expect -%>
 expect <%= @expect %> 
-respawn
+<% end -%>
+<% if @respawn -%>
 
+respawn
+<% end -%>
+<% if @respawn_limit -%>
+
+respawn limit <%= @respawn_limit %>
+<% end -%>
+<% if @instance -%>
+
+instance <%= @instance %>
+<% end -%>
+<% if @pid -%>
+
+pid <%= @pid %>
+<% end -%>
+<% if @kill_timeout -%>
+
+kill timeout <%= @kill_timeout %>
+<% end -%>
+<% if @normal_ext -%>
+
+normal exit <%= @normal_exit %>
+<% end -%>
+<% if @console -%>
+
+console <%= @console %>
+<% end -%>
+<% if @env -%>
+
+env <%= @env %>
+<% end -%>
+<% if @umask -%>
+
+umask <%= @umask %>
+<% end -%>
+<% if @nice -%>
+
+nice <%= @nice %>
+<% end -%>
+<% if @limit -%>
+
+limit <%= @limit %>
+<% end -%>
+<% if @chroot -%>
+
+chroot <%= @chroot %>
+<% end -%>
+<% if @chdir -%>
+
+chdir <%= @chdir %>
+<% end -%>
+<% if @pre_start -%>
+
+pre-start <%= @pre_start %>
+<% end -%>
+<% if @post_start %>
+
+post-start <%= @post_start %>
+<% end -%>
+<% if @post_stop -%>
+
+post-stop <%= @post_stop %>        
+<% end -%>
 <% if @use_script -%>
+
 script
   <%= @cmd %>
 end script
 <% else -%>
+
 exec <%= @cmd %>
 <% end -%>
